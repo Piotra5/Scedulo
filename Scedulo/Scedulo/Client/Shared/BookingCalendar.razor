@@ -1,0 +1,158 @@
+﻿@inject NavigationManager  NavigationManager
+<div class="calendar-main main container">
+    <div class="calendar-main">
+        <ul class="mr-auto">
+            <li class="nav-item active float-left">
+                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active float-right">
+                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+        </ul>
+        @for (int r = 0; r < 6; r++)
+        {
+            <div class="row">
+                @if (r == 0)
+                {
+                    @for (int i = 0; i < 7; i++)
+                    {
+                        if (!(DaysInPreviousMonth - FirstDayNumber + i + 1 >= DaysInPreviousMonth))
+                        {
+                            @((DaysInPreviousMonth - FirstDayNumber + i + 2))
+
+                            <div class="col" style="height: 60px;">
+                                <li @onclick="@(() => ShowDayDetails(DaysInPreviousMonth - FirstDayNumber + i + 2, r))" style="background-color:aqua">
+                                </li>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="col" style="height: 60px;">
+                                @(i - FirstDayNumber + 2)
+                            </div>
+                        }
+                    }
+                }
+                else
+                {
+                    @for (int i = 0; i < 7; i++)
+                    {
+                        if (r * 7 - FirstDayNumber + i + 2 <= DaysInCurrentMonth)
+                        {
+                            <div class="col" style="height: 60px;">
+                                @(r * 7 - FirstDayNumber + i + 2)
+                            </div>
+                        }
+                        else
+                        {
+                            if (r == 5)
+                            {
+                                <div class="col" style="height: 60px;">
+                                    @(7 - FirstDayOfNextMonthNumber + i + 2)
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="col" style="height: 60px;">
+                                    @(i - FirstDayOfNextMonthNumber + 2)
+                                </div>
+                            }
+                        }
+                    }
+                }
+            </div>
+        }
+    </div>
+    
+</div>
+
+@code {
+    int DayOfWeek { get; set; }
+    int DaysInCurrentMonth { get; set; }
+    int DaysInPreviousMonth { get; set; }
+    int DayInMonth { get; set; }
+
+    DateTime TodaysDate { get; set; }
+    DateTime FirstDayOfMonth { get; set; }
+    DateTime LastDayOfMonth { get; set; }
+    int FirstDayNumber { get; set; }
+    int LastDayNumber { get; set; }
+    bool IsFirstDayMonday { get; set; }
+    int FirstDayOfNextMonthNumber { get; set; }
+
+    List<DateTime> CurrentMonth { get; set; }
+    //List<DateTime> PreviousMonth { get; set; }
+    //List<DateTime> NextMonth { get; set; }
+
+
+    protected override void OnInitialized()
+    {
+        TodaysDate = WhatsTodaysDate();
+        DayOfWeek = WhatDayInWeek(TodaysDate);
+        DayInMonth = CountDay();
+        DaysInCurrentMonth = HowManyDaysInMonth(TodaysDate.Year, TodaysDate.Month);
+        DaysInPreviousMonth = HowManyDaysInMonth(TodaysDate.Year - 1, TodaysDate.Month - 1);
+        FirstDayOfMonth = WhatsFirstDayOfMonth(TodaysDate);
+        CurrentMonth = CurrentMonth;
+        FirstDayNumber = (int)FirstDayOfMonth.DayOfWeek;
+        LastDayOfMonth = WhatsLastDayOfMonth(TodaysDate);
+        FirstDayOfNextMonthNumber = (int)WhatsFirstDayOfMonth(TodaysDate.AddMonths(1)).DayOfWeek;
+        LastDayNumber = (int)LastDayOfMonth.DayOfWeek;
+        IsFirstDayMonday = (FirstDayNumber == 1);
+    }
+
+    DateTime WhatsTodaysDate()
+    {
+        return DateTime.Today;
+    }
+
+    int CountDay()
+    {
+        return DateTime.Today.Day;
+    }
+
+    int WhatDayInWeek(DateTime day)
+    {
+        return (int)day.DayOfWeek;
+    }
+
+    int HowManyDaysInMonth(int year, int month)
+    {
+        return DateTime.DaysInMonth(year, month);
+    }
+
+    DateTime WhatsFirstDayOfMonth(DateTime todaysDate)
+    {
+        return new DateTime(todaysDate.Year, todaysDate.Month, 1);
+    }
+
+    DateTime WhatsLastDayOfMonth(DateTime todaysDate)
+    {
+        DateTime firstOfNextMonth = new DateTime(todaysDate.Year, todaysDate.Month, 1).AddMonths(1);
+        return firstOfNextMonth.AddDays(-1);
+
+    }
+
+    public static List<DateTime> GetDates(int year, int month)
+    {
+        return Enumerable.Range(1, DateTime.DaysInMonth(year, month))  // Days: 1, 2 ... 31 etc.
+                         .Select(day => new DateTime(year, month, day)) // Map each day to a date
+                         .ToList(); // Load dates into a list
+    }
+
+    public void ShowDayDetails(int day, int row)
+    {
+        var date = new DateTime(2019, 10, day);
+
+        if (row == 0 && day > 20)
+        {
+            date.AddMonths(-1);
+        }
+        else if (row == 5 && day < 10)
+        {
+            date.AddMonths(1);
+        }
+        var dateS = date.ToString();
+        NavigationManager.NavigateTo($"day/" + dateS);
+    }
+}

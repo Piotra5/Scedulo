@@ -1,0 +1,14 @@
+﻿@page "/data/details/{data:datetime}"
+<h1>date details @Data.ToString()</h1>
+
+@code {
+    [Parameter]
+    public DateTime Data { get; set; }
+
+    protected override void OnInitialized()
+    {
+
+    }
+
+
+}
