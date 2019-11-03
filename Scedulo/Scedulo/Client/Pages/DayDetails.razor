@@ -1,13 +1,20 @@
-﻿@page "/data/details/{data:datetime}"
-<h1>date details @Data.ToString()</h1>
+﻿@page "/data/details/{date:datetime}"
+<h1>date details @Date.ToString("dd/MM/yyyy")</h1>
+@for(int i = 0; i<=16; i++)
+{
+<li class="list-group-item">@StartDate.ToString("HH:mm")</li>
+@StartDate.AddMinutes(30);
+}
 
 @code {
     [Parameter]
-    public DateTime Data { get; set; }
+    public DateTime Date { get; set; }
+
+    public DateTime StartDate { get; set; }
 
     protected override void OnInitialized()
     {
-
+        StartDate = new DateTime(Date.Year, Date.Month, Date.Day, 9, 0, 0);
     }
 
 
