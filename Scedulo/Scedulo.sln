@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29411.138
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scedulo.Server", "Scedulo\Server\Scedulo.Server.csproj", "{A0F9960B-766F-45E8-8CF8-539AEEFF4D94}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Scedulo.Server", "Scedulo\Server\Scedulo.Server.csproj", "{A0F9960B-766F-45E8-8CF8-539AEEFF4D94}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scedulo.Client", "Scedulo\Client\Scedulo.Client.csproj", "{100C0E3B-D263-4055-82B4-BD30DD748C59}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Scedulo.Client", "Scedulo\Client\Scedulo.Client.csproj", "{100C0E3B-D263-4055-82B4-BD30DD748C59}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scedulo.Shared", "Scedulo\Shared\Scedulo.Shared.csproj", "{6EE17089-7D6D-4BE3-865C-707247892CCE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Scedulo.Shared", "Scedulo\Shared\Scedulo.Shared.csproj", "{6EE17089-7D6D-4BE3-865C-707247892CCE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
