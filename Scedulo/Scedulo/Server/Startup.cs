@@ -12,6 +12,9 @@ using Microsoft.IdentityModel.Tokens;
 using Scedulo.Server.Data;
 using System.Linq;
 using System.Text;
+using Swashbuckle.AspNetCore.Swagger;
+using System.Collections.Generic;
+using Scedulo.Server.Data.Models.ApplicationUsers;
 
 namespace Scedulo.Server
 {
@@ -39,7 +42,7 @@ namespace Scedulo.Server
             services.AddDbContext<ApplicationDbContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddDefaultIdentity<IdentityUser>()
+            services.AddDefaultIdentity<ApplicationUser>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -60,6 +63,14 @@ namespace Scedulo.Server
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Scedulo", Version = "v0.1" });
+
+                c.AddSecurityDefinition("Bearer", new ApiKeyScheme
+                {
+                    Description = "JWT Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\"",
+                    Name = "Authorization",
+                    In = "header",
+                    Type = "apiKey"
+                });
             });
         }
 
