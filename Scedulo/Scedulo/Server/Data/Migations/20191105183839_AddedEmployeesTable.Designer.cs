@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Scedulo.Server.Data;
 
 namespace Scedulo.Server.Data.Migations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20191105183839_AddedEmployeesTable")]
+    partial class AddedEmployeesTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -234,28 +236,6 @@ namespace Scedulo.Server.Data.Migations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("Scedulo.Server.Data.Models.Customers.Customer", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<double>("Balance")
-                        .HasColumnType("float");
-
-                    b.Property<bool>("Newsleter")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Customer");
-                });
-
             modelBuilder.Entity("Scedulo.Server.Data.Models.Employees.Employee", b =>
                 {
                     b.Property<Guid>("Id")
@@ -318,7 +298,7 @@ namespace Scedulo.Server.Data.Migations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("EmployeePermissions");
+                    b.ToTable("EmployeePermission");
                 });
 
             modelBuilder.Entity("Scedulo.Server.Data.Models.Employees.EmployeeRole", b =>
@@ -335,27 +315,7 @@ namespace Scedulo.Server.Data.Migations
 
                     b.HasKey("Id");
 
-                    b.ToTable("EmployeeRoles");
-                });
-
-            modelBuilder.Entity("Scedulo.Server.Data.Models.Rooms.Equipment", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<double>("Value")
-                        .HasColumnType("float");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Equipments");
+                    b.ToTable("EmployeeRole");
                 });
 
             modelBuilder.Entity("Scedulo.Server.Data.Models.Rooms.RoleRoomPermission", b =>
@@ -376,114 +336,7 @@ namespace Scedulo.Server.Data.Migations
 
                     b.HasIndex("ServiceRoleId");
 
-                    b.ToTable("RoleRoomPermissions");
-                });
-
-            modelBuilder.Entity("Scedulo.Server.Data.Models.Rooms.Room", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Rooms");
-                });
-
-            modelBuilder.Entity("Scedulo.Server.Data.Models.Rooms.RoomEquipment", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("EquipmentId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("RoomId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("EquipmentId");
-
-                    b.HasIndex("RoomId");
-
-                    b.ToTable("RoomEquipment");
-                });
-
-            modelBuilder.Entity("Scedulo.Server.Data.Models.Schedules.EmployeeSchedule", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("AbsenceReason")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid?>("EmployeeId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTimeOffset>("FinishTime")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<bool>("Present")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Role")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTimeOffset>("StartTime")
-                        .HasColumnType("datetimeoffset");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("EmployeeId");
-
-                    b.ToTable("EmployeeSchedules");
-                });
-
-            modelBuilder.Entity("Scedulo.Server.Data.Models.ServiceReservations.ServiceReservation", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("AbsenceReason")
-                        .HasColumnType("text");
-
-                    b.Property<Guid?>("CustomerId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<bool?>("Done")
-                        .HasColumnType("bit");
-
-                    b.Property<Guid?>("EmployeeId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTimeOffset>("EstimatedTime")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<DateTimeOffset>("ReservationTime")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<Guid?>("ServiceId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CustomerId");
-
-                    b.HasIndex("EmployeeId");
-
-                    b.HasIndex("ServiceId");
-
-                    b.ToTable("ServiceReservations");
+                    b.ToTable("RoleRoomPermission");
                 });
 
             modelBuilder.Entity("Scedulo.Server.Data.Models.Services.RoleServicePermission", b =>
@@ -530,7 +383,7 @@ namespace Scedulo.Server.Data.Migations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Services");
+                    b.ToTable("Service");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -584,13 +437,6 @@ namespace Scedulo.Server.Data.Migations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Scedulo.Server.Data.Models.Customers.Customer", b =>
-                {
-                    b.HasOne("Scedulo.Server.Data.Models.ApplicationUsers.ApplicationUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
-                });
-
             modelBuilder.Entity("Scedulo.Server.Data.Models.Employees.Employee", b =>
                 {
                     b.HasOne("Scedulo.Server.Data.Models.ApplicationUsers.ApplicationUser", "AdedBy")
@@ -626,39 +472,6 @@ namespace Scedulo.Server.Data.Migations
                     b.HasOne("Scedulo.Server.Data.Models.Employees.EmployeeRole", "ServiceRole")
                         .WithMany("AvailableRooms")
                         .HasForeignKey("ServiceRoleId");
-                });
-
-            modelBuilder.Entity("Scedulo.Server.Data.Models.Rooms.RoomEquipment", b =>
-                {
-                    b.HasOne("Scedulo.Server.Data.Models.Rooms.Equipment", "Equipment")
-                        .WithMany()
-                        .HasForeignKey("EquipmentId");
-
-                    b.HasOne("Scedulo.Server.Data.Models.Rooms.Room", "Room")
-                        .WithMany("AvailableEquipments")
-                        .HasForeignKey("RoomId");
-                });
-
-            modelBuilder.Entity("Scedulo.Server.Data.Models.Schedules.EmployeeSchedule", b =>
-                {
-                    b.HasOne("Scedulo.Server.Data.Models.Employees.Employee", "Employee")
-                        .WithMany()
-                        .HasForeignKey("EmployeeId");
-                });
-
-            modelBuilder.Entity("Scedulo.Server.Data.Models.ServiceReservations.ServiceReservation", b =>
-                {
-                    b.HasOne("Scedulo.Server.Data.Models.Customers.Customer", "Customer")
-                        .WithMany()
-                        .HasForeignKey("CustomerId");
-
-                    b.HasOne("Scedulo.Server.Data.Models.Employees.Employee", "Employee")
-                        .WithMany()
-                        .HasForeignKey("EmployeeId");
-
-                    b.HasOne("Scedulo.Server.Models.Services.Service", "Service")
-                        .WithMany()
-                        .HasForeignKey("ServiceId");
                 });
 
             modelBuilder.Entity("Scedulo.Server.Data.Models.Services.RoleServicePermission", b =>
