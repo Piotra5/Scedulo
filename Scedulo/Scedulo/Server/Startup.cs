@@ -64,12 +64,25 @@ namespace Scedulo.Server
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Scedulo", Version = "v0.1" });
 
-                c.AddSecurityDefinition("Bearer", new ApiKeyScheme
+                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
-                    Description = "JWT Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\"",
+                    In = ParameterLocation.Header,
+                    Description = "Please insert JWT with Bearer into field",
                     Name = "Authorization",
-                    In = "header",
-                    Type = "apiKey"
+                    Type = SecuritySchemeType.ApiKey
+                });
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement {
+                {
+                    new OpenApiSecurityScheme
+                    {
+                    Reference = new OpenApiReference
+                    {
+                        Type = ReferenceType.SecurityScheme,
+                        Id = "Bearer"
+                    }
+                    },
+                    new string[] { }
+                }
                 });
             });
         }
