@@ -4,6 +4,6 @@ namespace Scedulo.Shared.Models.Employees
 {
     public class EmployeesListViewModel
     {
-        public List<EmployeeViewModel> CompanyEmployees { get; set; }
+        public List<EmployeeViewModel> CompanyEmployees { get; set; } = new List<EmployeeViewModel>();
     }
 }

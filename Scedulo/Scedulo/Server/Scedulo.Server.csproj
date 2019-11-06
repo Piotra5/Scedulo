@@ -2,7 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <LangVersion>7.3</LangVersion>
+    <LangVersion>8.0</LangVersion>
+    <NullableContextOptions>enable</NullableContextOptions>
   </PropertyGroup>
 
   <ItemGroup>
@@ -32,7 +33,12 @@
 
   <ItemGroup>
     <Folder Include="Admin\" />
-    <Folder Include="Services\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="appsettings - Copy.json.rej">
+      <DependentUpon>appsettings - Copy.json</DependentUpon>
+    </None>
   </ItemGroup>
 
 </Project>

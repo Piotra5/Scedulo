@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Scedulo.Shared.Models.Employees
 {
@@ -10,14 +9,6 @@ namespace Scedulo.Shared.Models.Employees
         [Required]
         [Display(Name = "User")]
         public String UserId { get; set; }
-        [Display(Name = "Email")]
-        public string FirstName {get; set;}
-        [Display(Name = "Email")]
-        public string SecondName {get; set;}
-        [Display(Name = "Email")]
-        public string Surname {get; set;}
-        [Display(Name = "Email")]
-        public IdentityUser[] Users {get; set;}
         [Display(Name = "Email")]
         public DateTimeOffset EmploymentDate { get; set; }
         [Display(Name = "Email")]

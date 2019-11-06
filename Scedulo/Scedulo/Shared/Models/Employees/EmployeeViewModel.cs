@@ -6,7 +6,7 @@ namespace Scedulo.Shared.Models.Employees
     public class EmployeeViewModel
     {
         [Display(Name = "Id")]
-        public Guid Id{get; set;}
+        public string Id{get; set;}
 
         [Display(Name = "First name")]
         public string FirstName { get; set; }
