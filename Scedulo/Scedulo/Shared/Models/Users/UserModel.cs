@@ -8,7 +8,5 @@ namespace Scedulo.Shared.Models.Users
     {
         public string Email { get; set; }
         public bool IsAuthenticated { get; set; }
-        public DateTime? DoB { get; set; }
-        public bool IsEmployed { get; set; } = false;
     }
 }

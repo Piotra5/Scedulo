@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using Scedulo.Server.Data.Models.ApplicationUsers;
 using Scedulo.Shared.Models.Users;
 
 namespace Scedulo.Server.Controllers.Base
@@ -18,10 +19,10 @@ namespace Scedulo.Server.Controllers.Base
     public class LoginController : ControllerBase
     {
         private readonly IConfiguration _configuration;
-        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly SignInManager<ApplicationUser> _signInManager;
 
         public LoginController(IConfiguration configuration,
-                               SignInManager<IdentityUser> signInManager)
+                               SignInManager<ApplicationUser> signInManager)
         {
             _configuration = configuration;
             _signInManager = signInManager;
