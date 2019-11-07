@@ -303,20 +303,26 @@ namespace Scedulo.Server.Data.Migations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("EmployeeId")
+                    b.Property<string>("EmployeeId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("EmployeeId1")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("ExpiringDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid?>("RoleId")
+                    b.Property<string>("RoleId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("RoleId1")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("EmployeeId");
+                    b.HasIndex("EmployeeId1");
 
-                    b.HasIndex("RoleId");
+                    b.HasIndex("RoleId1");
 
                     b.ToTable("EmployeePermissions");
                 });
@@ -610,11 +616,11 @@ namespace Scedulo.Server.Data.Migations
                 {
                     b.HasOne("Scedulo.Server.Data.Models.Employees.Employee", "Employee")
                         .WithMany("AvailablePermissions")
-                        .HasForeignKey("EmployeeId");
+                        .HasForeignKey("EmployeeId1");
 
                     b.HasOne("Scedulo.Server.Data.Models.Employees.EmployeeRole", "Role")
                         .WithMany()
-                        .HasForeignKey("RoleId");
+                        .HasForeignKey("RoleId1");
                 });
 
             modelBuilder.Entity("Scedulo.Server.Data.Models.Rooms.RoleRoomPermission", b =>

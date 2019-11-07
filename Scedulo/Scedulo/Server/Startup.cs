@@ -17,6 +17,8 @@ using System.Collections.Generic;
 using Scedulo.Server.Data.Models.ApplicationUsers;
 using Scedulo.Server.Services.Employees;
 using Scedulo.Server.Services.Services;
+using Scedulo.Server.Services.Roles;
+using Scedulo.Server.Services.Permissions;
 
 namespace Scedulo.Server
 {
@@ -90,6 +92,8 @@ namespace Scedulo.Server
 
             services.AddScoped<IEmployeesService, EmployeesService>();
             services.AddScoped<IServicesService, ServicesService>();
+            services.AddScoped<IRolesService, RolesService>();
+            services.AddScoped<IEmployeePermissionService, EmployeePermissionService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
