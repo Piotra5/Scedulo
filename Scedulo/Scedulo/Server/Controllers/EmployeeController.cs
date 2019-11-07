@@ -88,29 +88,19 @@ namespace CalendaroNet.Controllers
         public async Task<IActionResult> EditEmployee(string id,[FromBody]AddEmployeeViewModel employee)
         {
             var currentUser = await _userManager.GetUserAsync(User);
-            var employeeUser = await _userManager.FindByIdAsync(employee.UserId);
-            var originEmployee = await _employeeService.GetEmployeeAsync(id);
             if (currentUser == null) return Challenge();
-            var updatedEmployee = new AddEmployeeViewModel
-            {
-                UserId = employee.UserId,
-                EmploymentDate = employee.EmploymentDate,
-                ContractEndDate = employee.ContractEndDate,
-                BaseMonthSalary = employee.BaseMonthSalary,
-                UpdateDate = DateTimeOffset.Now,
-                EditedBy = currentUser.Id
-            };
+            employee.UpdateDate = DateTime.Now;
+            employee.EditedBy = currentUser.Id;
 
             var successful = await _employeeService
-            .UpdateEmployeeAsync(id, updatedEmployee);
+            .UpdateEmployeeAsync(id, employee);
 
             if (!successful)
             {
                 return BadRequest("Could not update employee.");
             }
 
-
-            return RedirectToAction("Index");
+            return Ok("Updated employee of id: " + id);
         }
 
         // DELETE api/employees/714921f1-8e4d-4d8f-a28c-3544f92e318
@@ -132,5 +122,6 @@ namespace CalendaroNet.Controllers
 
             return Ok("Deleted user " + name);
         }
+
     }
 }

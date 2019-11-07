@@ -1,7 +1,9 @@
+using System.Collections.Generic;
+
 namespace CalendaroNet.Shared.Models.Services
 {
     public class ServiceListViewModel
     {
-        public ServiceViewModel[] Services { get; set; }
+        public List<ServiceViewModel> Services { get; set; }
     }
 }

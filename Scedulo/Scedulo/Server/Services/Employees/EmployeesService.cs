@@ -145,7 +145,7 @@ namespace Scedulo.Server.Services.Employees
                     ContractEndDate = employee.ContractEndDate,
                     CreatedDate = employee.CreatedDate,
                     UpdateDate = employee.UpdateDate,
-                    AdedBy = editedBy == null ? addedBy.Name + addedBy.Surname + " e-mail:" + addedBy.Email : null;,
+                    AdedBy = editedBy == null ? addedBy.Name + addedBy.Surname + " e-mail:" + addedBy.Email : null,
                     EditedBy = editedBy == null ? editedBy.Name + editedBy.Surname + " e-mail:" + editedBy.Email : null,
                     BaseMonthSalary = employee.BaseMonthSalary
                 };
