@@ -8,15 +8,11 @@ namespace Scedulo.Shared.Models.Employees
     {
         [Required]
         [Display(Name = "User")]
-        public String UserId { get; set; }
+        public string UserId { get; set; }
         [Display(Name = "Email")]
         public DateTimeOffset EmploymentDate { get; set; }
         [Display(Name = "Email")]
         public DateTimeOffset? ContractEndDate { get; set; }
-        [Display(Name = "Email")]
-        public DateTimeOffset? UpdateDate { get; set; }
-        [Display(Name = "Email")]
-        public String EditedBy { get; set; }
         [Display(Name = "Email")]
         [Range(0, 99999.99)]
         public double BaseMonthSalary { get; set; }

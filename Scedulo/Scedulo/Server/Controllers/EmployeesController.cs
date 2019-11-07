@@ -66,6 +66,7 @@ namespace CalendaroNet.Controllers
             if (currentUser == null) return Challenge();
             var employee = new Employee
             {
+                Id = Guid.NewGuid(),
                 User = employedUser,
                 EmploymentDate = newEmployee.EmploymentDate,
                 ContractEndDate = newEmployee.ContractEndDate,
@@ -85,15 +86,14 @@ namespace CalendaroNet.Controllers
         // PUT api/employees/714921f1-8e4d-4d8f-a28c-3544f92e318
         [HttpPut]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditEmployee(string id,[FromBody]AddEmployeeViewModel employee)
+        public async Task<IActionResult> EditEmployee(string id,[FromBody]AddEmployeeViewModel updatedEmployee)
         {
             var currentUser = await _userManager.GetUserAsync(User);
+            var employedUser = await _userManager.FindByIdAsync(updatedEmployee.UserId);
             if (currentUser == null) return Challenge();
-            employee.UpdateDate = DateTime.Now;
-            employee.EditedBy = currentUser.Id;
 
             var successful = await _employeeService
-            .UpdateEmployeeAsync(id, employee);
+            .UpdateEmployeeAsync(id, updatedEmployee, currentUser.Id.ToString());
 
             if (!successful)
             {

@@ -14,6 +14,6 @@ namespace Scedulo.Server.Services.Employees
         Task<bool> AddEmployeeAsync(Employee employee);
         Task<Guid> GetEmployeeIdByUserIdAsync(string id);
         Task<bool> DeleteEmployeeAsync(string id);
-        Task<bool> UpdateEmployeeAsync(string id, AddEmployeeViewModel changedEmployee);
+        Task<bool> UpdateEmployeeAsync(string id, AddEmployeeViewModel changedEmployee, string editedById);
     }
 }

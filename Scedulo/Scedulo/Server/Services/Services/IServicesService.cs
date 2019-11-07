@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using CalendaroNet.Shared.Models.Services;
 using Microsoft.AspNetCore.Identity;
+using Scedulo.Server.Models.Services;
 
 namespace Scedulo.Server.Services.Services
 {
-using Scedulo.Server.Models.Services;
-
-public interface IServicesService
+    public interface IServicesService
     {
         Task<Service> GetServiceAsync(string id);
         Task<List<Service>> GetListOfAllServicesAsync();

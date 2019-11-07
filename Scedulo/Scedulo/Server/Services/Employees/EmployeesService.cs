@@ -53,11 +53,42 @@ namespace Scedulo.Server.Services.Employees
         }
         #endregion
 
-        #region GetEmployeeById()
+        #region GetListOfAllEmployeesAsync()
+        public async Task<EmployeesListViewModel> GetListOfAllEmployeesAsync()
+        {
+            var employeesList = await _context.Employees
+                .ToListAsync();
+            var employeesViewList = new EmployeesListViewModel();
+            foreach (var employee in employeesList)
+            {
+                var user = (await _userManager.FindByIdAsync(employee.UserId));
+                var addedBy = (await _userManager.FindByIdAsync(employee.AddedById));
+                var editedBy = (await _userManager.FindByIdAsync(employee.EditedById));
+                var employeeView = new EmployeeViewModel
+                {
+                    Id = employee.Id.ToString(),
+                    FirstName = user.Name,
+                    Surname = user.Surname,
+                    EmploymentDate = employee.EmploymentDate,
+                    ContractEndDate = employee.ContractEndDate,
+                    CreatedDate = employee.CreatedDate,
+                    UpdateDate = employee.UpdateDate,
+                    AdedBy = editedBy == null ? addedBy.Name + addedBy.Surname + " e-mail:" + addedBy.Email : null,
+                    EditedBy = editedBy == null ? editedBy.Name + editedBy.Surname + " e-mail:" + editedBy.Email : null,
+                    BaseMonthSalary = employee.BaseMonthSalary
+                };
+                employeesViewList.CompanyEmployees.Add(employeeView);
+            }
+
+            return employeesViewList;
+        }
+        #endregion
+
+        #region GetEmployeeIdByUserId()
         public async Task<Guid> GetEmployeeIdByUserIdAsync(string id)
         {
             var employee = await _context.Employees
-                //.Where(x => x. == id)
+                .Where(x => x.UserId == id)
                 .SingleOrDefaultAsync();
 
             return employee.Id;
@@ -99,14 +130,14 @@ namespace Scedulo.Server.Services.Employees
         #endregion
 
         #region UpdateEmployeeAsync()
-        public async Task<bool> UpdateEmployeeAsync(string id, AddEmployeeViewModel changedEmployee)
+        public async Task<bool> UpdateEmployeeAsync(string id, AddEmployeeViewModel changedEmployee, string editedById)
         {
             var employee = await _context.Employees
                 .Where(x => x.Id.ToString() == id)
                 .SingleOrDefaultAsync();
 
             var user = await _userManager.FindByIdAsync(changedEmployee.UserId);
-            var editedBy = await _userManager.FindByIdAsync(changedEmployee.EditedBy);
+            var editedBy = await _userManager.FindByIdAsync(editedById);
 
             if (employee != null)
             {
@@ -114,45 +145,12 @@ namespace Scedulo.Server.Services.Employees
                 employee.EmploymentDate = changedEmployee.EmploymentDate;
                 employee.ContractEndDate = changedEmployee.ContractEndDate;
                 employee.BaseMonthSalary = changedEmployee.BaseMonthSalary;
-                employee.UpdateDate = changedEmployee.UpdateDate;
+                employee.UpdateDate = DateTime.Now;
                 employee.EditedBy = editedBy;
                 _context.Update(employee);
-
             }
-
             var saveResult = await _context.SaveChangesAsync();
             return saveResult == 1;
-        }
-        #endregion
-
-        #region GetListOfAllEmployeesAsync()
-        public async Task<EmployeesListViewModel> GetListOfAllEmployeesAsync()
-        {
-            var employeesList = await _context.Employees
-                .ToListAsync();
-            var employeesViewList = new EmployeesListViewModel();
-            foreach (var employee in employeesList)
-            {
-                var user = (await _userManager.FindByIdAsync(employee.UserId));
-                var addedBy = (await _userManager.FindByIdAsync(employee.AddedById));
-                var editedBy = (await _userManager.FindByIdAsync(employee.EditedById));
-                var employeeView = new EmployeeViewModel
-                {
-                    Id = employee.Id.ToString(),
-                    FirstName = user.Name,
-                    Surname = user.Surname,
-                    EmploymentDate = employee.EmploymentDate,
-                    ContractEndDate = employee.ContractEndDate,
-                    CreatedDate = employee.CreatedDate,
-                    UpdateDate = employee.UpdateDate,
-                    AdedBy = editedBy == null ? addedBy.Name + addedBy.Surname + " e-mail:" + addedBy.Email : null,
-                    EditedBy = editedBy == null ? editedBy.Name + editedBy.Surname + " e-mail:" + editedBy.Email : null,
-                    BaseMonthSalary = employee.BaseMonthSalary
-                };
-                employeesViewList.CompanyEmployees.Add(employeeView);
-            }
-
-            return employeesViewList;
         }
         #endregion
     }
