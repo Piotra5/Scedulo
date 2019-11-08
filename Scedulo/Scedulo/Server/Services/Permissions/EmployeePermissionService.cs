@@ -95,18 +95,23 @@ namespace Scedulo.Server.Services.Permissions
         #endregion
 
 
-        //#region UpdatePermissionAsync()
-        //public async Task<bool> UpdatePermissionAsync(string passedID, EmployeePermissionViewModel changedPermission)
-        //{
-        //    var id = new Guid(passedID);
-        //    var permission = await _context.EmployeePermissions
-        //        .Where(x => x.Id == id)
-        //        .SingleOrDefaultAsync();
-        //    if ( permission != null)
-        //    {
-        //        permission.RoleId = 
-        //    }
-        //}
-        //#endregion
+        #region UpdatePermissionAsync()
+        public async Task<bool> UpdatePermissionAsync(string passedID, EmployeePermissionViewModel changedPermission)
+        {
+            var id = new Guid(passedID);
+            var permission = await _context.EmployeePermissions
+                .Where(x => x.Id == id)
+                .SingleOrDefaultAsync();
+            if (permission != null)
+            {
+                permission.RoleId = changedPermission.RoleId;
+                permission.EmployeeId = changedPermission.EmployeeId;
+                permission.ExpiringDate = changedPermission.ExpiringDate;
+            }else { return false; }
+
+            var saveResult = await _context.SaveChangesAsync();
+            return saveResult == 1;
+        }
+        #endregion
     }
 }
