@@ -11,6 +11,8 @@ namespace Scedulo.Server.Data.Models.Rooms
     {
         public Guid Id { get; set; }
         public EmployeeRole ServiceRole { get; set; }
-        public Service Service { get; set; }
+        public string ServiceRoleId { get; set; }
+        public Room Room { get; set; }
+        public string ServiceId { get; set; }
     }
 }

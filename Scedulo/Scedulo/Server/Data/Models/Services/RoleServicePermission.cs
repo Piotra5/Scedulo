@@ -11,7 +11,9 @@ namespace Scedulo.Server.Data.Models.Services
     {
         public Guid Id { get; set; }
         public EmployeeRole ServiceRole { get; set; }
+        public string ServiceRoleId { get; set; }
         public Service Service { get; set; }
+        public string ServiceId { get; set; }
     }
 }
 
