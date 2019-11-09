@@ -96,7 +96,7 @@ namespace Scedulo.Server.Services.Permissions
 
 
         #region UpdatePermissionAsync()
-        public async Task<bool> UpdatePermissionAsync(string passedID, EmployeePermissionViewModel changedPermission)
+        public async Task<bool> UpdatePermissionAsync(string passedID, AddEmployeePermissionModel changedPermission)
         {
             var id = new Guid(passedID);
             var permission = await _context.EmployeePermissions

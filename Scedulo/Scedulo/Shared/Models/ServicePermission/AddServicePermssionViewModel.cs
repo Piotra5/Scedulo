@@ -5,15 +5,12 @@ using System.Text;
 
 namespace Scedulo.Shared.Models.ServicePermission
 {
-    public class ServicePermissionViewModel
+    class AddServicePermssionViewModel
     {
-        [Display(Name = "Id")]
-        public string Id { get; set; }
-
-        [Display(Name = "Name")]
+        [Display(Name = "Employee")]
         public string EmployeeRoleId { get; set; }
 
-        [Display(Name = "Description")]
+        [Display(Name = "Service")]
         public string ServiceId { get; set; }
     }
 }
