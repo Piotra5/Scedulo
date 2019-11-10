@@ -12,7 +12,8 @@ namespace Scedulo.Server.Services.Permissions
         Task<EmployeePermissionsListModel> GetListOfAllPermissionsAsync();
         Task<EmployeePermissionViewModel> GetPermissionByIdAsync(string Id);
         Task<bool> AddPermissionAsync(EmployeePermission permission);
-        //Task<Guid> GetPermissionIdByUserIdAsync(string id);
+        //Task<Guid> GetPermissionsIdByRoleIdAsync(string id);
+        //Task<Guid> GetPermissionsIdByServiceIdAsync(string id);
         Task<bool> DeletePermssionAsync(string id);
         Task<bool> UpdatePermissionAsync(string id, AddEmployeePermissionModel changedPermission);
     }

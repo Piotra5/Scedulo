@@ -11,7 +11,7 @@ namespace Scedulo.Shared.Models.ServicePermission
         public string Id { get; set; }
 
         [Display(Name = "Name")]
-        public string EmployeeRoleId { get; set; }
+        public string ServiceRoleId { get; set; }
 
         [Display(Name = "Description")]
         public string ServiceId { get; set; }

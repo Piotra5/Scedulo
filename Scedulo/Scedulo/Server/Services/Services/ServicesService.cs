@@ -21,6 +21,15 @@ namespace Scedulo.Server.Services.Services
         }
         #endregion
 
+        #region GetListOfAllServices()
+        public async Task<List<Service>> GetListOfAllServicesAsync()
+        {
+            var services = await _context.Services
+                .ToListAsync();
+            return services;
+        }
+        #endregion
+
         #region GetServiceById()
         public async Task<Service> GetServiceAsync(string id)
         {
@@ -94,15 +103,6 @@ namespace Scedulo.Server.Services.Services
         
             var saveResult = await _context.SaveChangesAsync();
             return saveResult == 1;
-        }
-        #endregion
-
-        #region GetListOfAllServices()
-        public async Task<List<Service>> GetListOfAllServicesAsync()
-        {
-            var services = await _context.Services
-                .ToListAsync();
-            return services;           
         }
         #endregion
     }

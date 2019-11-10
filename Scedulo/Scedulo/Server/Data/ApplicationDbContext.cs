@@ -30,7 +30,7 @@ namespace Scedulo.Server.Data
         public DbSet<Room> Rooms { get; set; }
         public DbSet<EmployeeSchedule> EmployeeSchedules { get; set; }
         public DbSet<ServiceReservation> ServiceReservations { get; set; }
-        public DbSet<RoleServicePermission> RoleServicePermission { get; set; }
+        public DbSet<RoleServicePermssion> RoleServicePermission { get; set; }
         public DbSet<Service> Services { get; set; }
 
 

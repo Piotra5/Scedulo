@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Scedulo.Server.Data.Models.Services
 {
-    public class RoleServicePermission
+    public class RoleServicePermssion
     {
         public Guid Id { get; set; }
         public EmployeeRole ServiceRole { get; set; }

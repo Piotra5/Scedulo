@@ -9,9 +9,11 @@ namespace Scedulo.Server.Services.ServicePermissions
 {
     public interface IServicesPermissionService
     {
-        Task<RoleServicePermission> GetServicePermissionAsync(string id);
-        Task<List<RoleServicePermission>> GetListOfAllServicesPermissionsAsync();
-        Task<bool> AddServicePermissionAsync(AddServicePermssionViewModel newService);
+        Task<RoleServicePermssion> GetServicePermissionByIdAsync(string id);
+        Task<List<RoleServicePermssion>> GetListOfAllServicesPermissionsAsync();
+        Task<List<ServicePermissionViewModel>> GetPermissionsdByRoleIdAsync(string id);
+        Task<List<ServicePermissionViewModel>> GetPermissionsByServiceIdAsync(string id);
+        Task<string> AddServicePermissionAsync(AddServicePermissionViewModel newService);
         Task<bool> DeleteServicePermissionAsync(string id);
         Task<bool> UpdateServicePermissionAsync(string id, ServicePermissionViewModel changedService);
     }

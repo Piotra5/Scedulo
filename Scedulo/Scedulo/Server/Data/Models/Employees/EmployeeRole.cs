@@ -14,7 +14,7 @@ namespace Scedulo.Server.Data.Models.Employees
         public string Name { get; set; }
         [Column(TypeName = "text")]
         public string Description {get; set;}
-        public List<RoleServicePermission> AvailableServices { get; set; } = new List<RoleServicePermission>();
+        public List<RoleServicePermssion> AvailableServices { get; set; } = new List<RoleServicePermssion>();
         public List<RoleRoomPermission> AvailableRooms { get; set; } = new List<RoleRoomPermission>();
 
     }
