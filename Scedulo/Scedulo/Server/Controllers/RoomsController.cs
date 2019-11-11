@@ -1,46 +1,49 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using CalendaroNet.Shared.Models.Services;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Scedulo.Server.Services.Services;
+using Scedulo.Server.Services.Rooms;
 using Scedulo.Shared.Models.Base;
+using Scedulo.Shared.Models.Rooms;
 
-namespace CalendaroNet.Controllers
+namespace Scedulo.Server.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ServicesController : Controller
+    public class RoomsController : Controller
     {
-        private readonly IServicesService _servicesService;
+        private readonly IRoomsService _roomsService;
 
-        public ServicesController(IServicesService ServicesService)
+        public RoomsController(IRoomsService RoomsService)
         {
-            _servicesService = ServicesService;
+            _roomsService = RoomsService;
+        }
+        public IActionResult Index()
+        {
+            return View();
         }
 
         // GET api/services
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            var services = await _servicesService.GetListOfAllServicesAsync();
-            return Ok(services);
+            var rooms = await _roomsService.GetListOfAllRoomsAsync();
+            return Ok(rooms);
         }
-        
+
         // GET api/services/714921f1-8e4d-4d8f-a28c-3544f92e318
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(string id)
         {
-            var room = await _servicesService.GetServiceAsync(id);
+            var room = await _roomsService.GetRoomAsync(id);
             return Ok(room);
         }
 
         [Authorize]
         [HttpPost]
-        public async Task<IActionResult> AddService([FromBody]ServiceViewModel newService)
+        public async Task<IActionResult> AddService([FromBody]AddRoomViewModel newRoom)
         {
             if (!ModelState.IsValid)
             {
@@ -55,24 +58,24 @@ namespace CalendaroNet.Controllers
                 return BadRequest(new AddingResult { Successful = false, Errors = modelErrors });
             }
 
-            var successful = await _servicesService
-            .AddServiceAsync(newService);
+            var successful = await _roomsService
+            .AddRoomAsync(newRoom);
 
             if (!successful)
             {
                 return BadRequest("Could not add service.");
             }
 
-            return Ok("Added service: " + newService.Name.ToUpper() );
+            return Ok("Added service: " + newRoom.Name.ToUpper());
         }
 
         // PUT api/employees/714921f1-8e4d-4d8f-a28c-3544f92e318
         [Authorize]
         [HttpPut]
-        public async Task<IActionResult> EditService(string id, ServiceViewModel service)
+        public async Task<IActionResult> EditService(string id, RoomViewModel service)
         {
-            var successful = await _servicesService
-            .UpdateServiceAsync(id, service);
+            var successful = await _roomsService
+            .UpdateRoomAsync(id, service);
 
             if (!successful)
             {
@@ -91,15 +94,15 @@ namespace CalendaroNet.Controllers
             {
                 return BadRequest("Could not delete with empty id.");
             }
-            var service = await _servicesService.GetServiceAsync(id);
-            var successful = await _servicesService.DeleteServiceAsync(id);
-            
+            var room = await _roomsService.GetRoomAsync(id);
+            var successful = await _roomsService.DeleteRoomAsync(id);
+
             if (!successful)
             {
                 return BadRequest("Could not delete service.");
             }
 
-            return Ok("Deleted service " + service.Name);
+            return Ok("Deleted service " + room.Name);
         }
     }
 }
