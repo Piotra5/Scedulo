@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Scedulo.Server.Data.Models.Employees;
+using Scedulo.Server.Data.Entities.Employees;
 using Scedulo.Server.Services.Employees;
 using Scedulo.Server.Services.Permissions;
 using Scedulo.Server.Services.Roles;

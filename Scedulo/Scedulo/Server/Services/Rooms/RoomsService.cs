@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Scedulo.Server.Data;
-using Scedulo.Server.Data.Models.Rooms;
+using Scedulo.Server.Data.Entities.Rooms;
 using Scedulo.Shared.Models.Rooms;
 using System;
 using System.Collections.Generic;

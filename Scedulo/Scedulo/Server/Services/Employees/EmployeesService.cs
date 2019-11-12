@@ -4,9 +4,9 @@ using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Identity;
-using Scedulo.Server.Data.Models.Employees;
 using Scedulo.Server.Data;
-using Scedulo.Server.Data.Models.ApplicationUsers;
+using Scedulo.Server.Data.Entities.Employees;
+using Scedulo.Server.Data.Entities.ApplicationUsers;
 using Scedulo.Shared.Models.Employees;
 
 namespace Scedulo.Server.Services.Employees

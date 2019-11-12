@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
-using Scedulo.Server.Data.Models.Employees;
+using Scedulo.Server.Data.Entities.Employees;
 using Scedulo.Shared.Models.Employees;
 
 namespace Scedulo.Server.Services.Employees

@@ -1,12 +1,11 @@
-using Scedulo.Server.Data.Models.Rooms;
-using Scedulo.Server.Data.Models.Services;
-using Scedulo.Server.Models.Services;
+using Scedulo.Server.Data.Entities.Rooms;
+using Scedulo.Server.Data.Entities.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Scedulo.Server.Data.Models.Employees
+namespace Scedulo.Server.Data.Entities.Employees
 {
     public class EmployeeRole
     {

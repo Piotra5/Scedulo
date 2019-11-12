@@ -1,10 +1,10 @@
-﻿using Scedulo.Server.Data.Models.ApplicationUsers;
+﻿using Scedulo.Server.Data.Entities.ApplicationUsers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Scedulo.Server.Data.Models.Customers
+namespace Scedulo.Server.Data.Entities.Customers
 {
     public class Customer
     {

@@ -1,11 +1,10 @@
-﻿using Scedulo.Server.Data.Models.Employees;
-using Scedulo.Server.Models.Services;
+﻿using Scedulo.Server.Data.Entities.Employees;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Scedulo.Server.Data.Models.Rooms
+namespace Scedulo.Server.Data.Entities.Rooms
 {
     public class RoleRoomPermission
     {

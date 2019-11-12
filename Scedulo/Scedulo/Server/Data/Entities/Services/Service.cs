@@ -1,7 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace Scedulo.Server.Models.Services
+namespace Scedulo.Server.Data.Entities.Services
 {
     public class Service
     {

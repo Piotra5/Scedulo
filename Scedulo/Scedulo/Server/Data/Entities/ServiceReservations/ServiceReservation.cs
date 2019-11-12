@@ -1,6 +1,6 @@
-﻿using Scedulo.Server.Data.Models.Customers;
-using Scedulo.Server.Data.Models.Employees;
-using Scedulo.Server.Models.Services;
+﻿using Scedulo.Server.Data.Entities.Services;
+using Scedulo.Server.Data.Entities.Customers;
+using Scedulo.Server.Data.Entities.Employees;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Scedulo.Server.Data.Models.ServiceReservations
+namespace Scedulo.Server.Data.Entities.ServiceReservations
 {
     public class ServiceReservation
     {

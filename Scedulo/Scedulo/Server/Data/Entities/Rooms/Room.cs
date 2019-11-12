@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Scedulo.Server.Data.Models.Rooms
+namespace Scedulo.Server.Data.Entities.Rooms
 {
     public class Room
     {

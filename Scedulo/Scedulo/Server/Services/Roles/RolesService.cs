@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Scedulo.Server.Data;
-using Scedulo.Server.Data.Models.Employees;
+using Scedulo.Server.Data.Entities.Employees;
 using Scedulo.Shared.Models.EmployeeRoles;
 using Scedulo.Shared.Models.RoomPermission;
 using Scedulo.Shared.Models.ServicePermission;

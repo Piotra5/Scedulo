@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using CalendaroNet.Shared.Models.Services;
 using Microsoft.EntityFrameworkCore;
 using Scedulo.Server.Data;
-using Scedulo.Server.Models.Services;
+using Scedulo.Server.Data.Entities.Services;
 
 namespace Scedulo.Server.Services.Services
 {

@@ -1,7 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace Scedulo.Server.Data.Models.Employees
+namespace Scedulo.Server.Data.Entities.Employees
 {
     public class EmployeePermission
     {

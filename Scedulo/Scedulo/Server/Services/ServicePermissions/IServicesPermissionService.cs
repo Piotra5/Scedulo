@@ -1,4 +1,4 @@
-﻿using Scedulo.Server.Data.Models.Services;
+﻿using Scedulo.Server.Data.Entities.Services;
 using Scedulo.Shared.Models.ServicePermission;
 using System;
 using System.Collections.Generic;

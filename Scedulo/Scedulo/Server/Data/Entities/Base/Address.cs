@@ -1,11 +1,11 @@
-﻿using Scedulo.Server.Data.Models.ApplicationUsers;
+﻿using Scedulo.Server.Data.Entities.ApplicationUsers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Scedulo.Server.Data.Models.Base
+namespace Scedulo.Server.Data.Entities.Base
 {
     public class Address
     {

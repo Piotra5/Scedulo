@@ -14,7 +14,7 @@ using System.Linq;
 using System.Text;
 using Swashbuckle.AspNetCore.Swagger;
 using System.Collections.Generic;
-using Scedulo.Server.Data.Models.ApplicationUsers;
+using Scedulo.Server.Data.Entities.ApplicationUsers;
 using Scedulo.Server.Services.Employees;
 using Scedulo.Server.Services.Services;
 using Scedulo.Server.Services.Roles;

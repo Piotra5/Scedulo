@@ -20,12 +20,8 @@ namespace Scedulo.Server.Controllers
         {
             _roomsService = RoomsService;
         }
-        public IActionResult Index()
-        {
-            return View();
-        }
 
-        // GET api/services
+        // GET api/rooms
         [HttpGet]
         public async Task<IActionResult> Get()
         {
@@ -33,7 +29,7 @@ namespace Scedulo.Server.Controllers
             return Ok(rooms);
         }
 
-        // GET api/services/714921f1-8e4d-4d8f-a28c-3544f92e318
+        // GET api/rooms/714921f1-8e4d-4d8f-a28c-3544f92e318
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(string id)
         {
@@ -41,6 +37,7 @@ namespace Scedulo.Server.Controllers
             return Ok(room);
         }
 
+        // Post api/rooms
         [Authorize]
         [HttpPost]
         public async Task<IActionResult> AddService([FromBody]AddRoomViewModel newRoom)
@@ -61,7 +58,7 @@ namespace Scedulo.Server.Controllers
             var successful = await _roomsService
             .AddRoomAsync(newRoom);
 
-            if (!successful)
+            if (successful== null)
             {
                 return BadRequest("Could not add service.");
             }
@@ -69,7 +66,7 @@ namespace Scedulo.Server.Controllers
             return Ok("Added service: " + newRoom.Name.ToUpper());
         }
 
-        // PUT api/employees/714921f1-8e4d-4d8f-a28c-3544f92e318
+        // PUT api/rooms/714921f1-8e4d-4d8f-a28c-3544f92e318
         [Authorize]
         [HttpPut]
         public async Task<IActionResult> EditService(string id, RoomViewModel service)
@@ -85,7 +82,7 @@ namespace Scedulo.Server.Controllers
             return Ok("Updated employee of id: " + id);
         }
 
-        // DELETE api/employees/714921f1-8e4d-4d8f-a28c-3544f92e318
+        // DELETE api/rooms/714921f1-8e4d-4d8f-a28c-3544f92e318
         [Authorize]
         [HttpDelete]
         public async Task<IActionResult> DeleteService(string id)

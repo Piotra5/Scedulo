@@ -38,6 +38,7 @@ namespace CalendaroNet.Controllers
             return Ok(room);
         }
 
+        // POST api/services
         [Authorize]
         [HttpPost]
         public async Task<IActionResult> AddService([FromBody]ServiceViewModel newService)
@@ -66,7 +67,7 @@ namespace CalendaroNet.Controllers
             return Ok("Added service: " + newService.Name.ToUpper() );
         }
 
-        // PUT api/employees/714921f1-8e4d-4d8f-a28c-3544f92e318
+        // PUT api/services/714921f1-8e4d-4d8f-a28c-3544f92e318
         [Authorize]
         [HttpPut]
         public async Task<IActionResult> EditService(string id, ServiceViewModel service)
@@ -82,7 +83,7 @@ namespace CalendaroNet.Controllers
             return Ok("Updated employee of id: " + id);
         }
 
-        // DELETE api/employees/714921f1-8e4d-4d8f-a28c-3544f92e318
+        // DELETE api/services/714921f1-8e4d-4d8f-a28c-3544f92e318
         [Authorize]
         [HttpDelete]
         public async Task<IActionResult> DeleteService(string id)

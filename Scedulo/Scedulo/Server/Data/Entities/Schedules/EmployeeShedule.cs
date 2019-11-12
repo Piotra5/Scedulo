@@ -1,8 +1,8 @@
 using System;
 using System.ComponentModel.DataAnnotations;
-using Scedulo.Server.Data.Models.Employees;
+using Scedulo.Server.Data.Entities.Employees;
 
-namespace Scedulo.Server.Data.Models.Schedules
+namespace Scedulo.Server.Data.Entities.Schedules
 {
     public class EmployeeSchedule
     {

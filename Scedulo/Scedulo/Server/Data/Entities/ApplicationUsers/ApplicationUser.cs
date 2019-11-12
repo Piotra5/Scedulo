@@ -1,12 +1,11 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using Scedulo.Server.Data.Models.Employees;
 using Scedulo.Shared.Models.Employees;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace Scedulo.Server.Data.Models.ApplicationUsers
+namespace Scedulo.Server.Data.Entities.ApplicationUsers
 {
     public class ApplicationUser : IdentityUser
     {

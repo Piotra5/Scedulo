@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
-using Scedulo.Server.Data.Models.ApplicationUsers;
+using Scedulo.Server.Data.Entities.ApplicationUsers;
 using Scedulo.Shared.Models.Users;
 
 namespace Scedulo.Server.Controllers.Base

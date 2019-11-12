@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using CalendaroNet.Shared.Models.Services;
 using Microsoft.AspNetCore.Identity;
-using Scedulo.Server.Models.Services;
+using Scedulo.Server.Data.Entities.Services;
 
 namespace Scedulo.Server.Services.Services
 {

@@ -1,9 +1,9 @@
-using Scedulo.Server.Data.Models.ApplicationUsers;
+using Scedulo.Server.Data.Entities.ApplicationUsers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace Scedulo.Server.Data.Models.Employees
+namespace Scedulo.Server.Data.Entities.Employees
 {
     public class Employee
     {

@@ -7,9 +7,9 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Scedulo.Server.Data.Models.ApplicationUsers;
+using Scedulo.Server.Data.Entities.ApplicationUsers;
 using Scedulo.Shared.Models.Employees;
-using Scedulo.Server.Data.Models.Employees;
+using Scedulo.Server.Data.Entities.Employees;
 using Scedulo.Shared.Models.Base;
 
 namespace CalendaroNet.Controllers
