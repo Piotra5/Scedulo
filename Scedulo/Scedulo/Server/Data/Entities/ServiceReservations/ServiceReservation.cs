@@ -14,8 +14,11 @@ namespace Scedulo.Server.Data.Entities.ServiceReservations
     {
         public Guid Id { get; set; }
         public Customer Customer { get; set; }
+        public string CustomerId { get; set; }
         public Service Service { get; set; }
-        public Employee Employee { get; set; }  
+        public string ServiceId { get; set; }
+        public Employee Employee { get; set; }
+        public string EmployeeId { get; set; }
         public DateTimeOffset ReservationTime { get; set; }
         public DateTimeOffset EstimatedTime { get; set; }
         public bool? Done { get; set; }

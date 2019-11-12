@@ -9,6 +9,7 @@ namespace Scedulo.Server.Data.Entities.Schedules
 
         public Guid Id { get; set; }       
         public Employee Employee {get; set;}
+        public string EmployeeId { get; set; }
         public DateTimeOffset StartTime { get; set; }
         public DateTimeOffset FinishTime { get; set; }
         public String Role { get; set; }

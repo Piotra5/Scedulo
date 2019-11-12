@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Scedulo.Server.Data.Entities.ApplicationUsers;
+using Scedulo.Server.Data.Entities.Base;
+using Scedulo.Server.Data.Entities.Customers;
 using Scedulo.Server.Data.Entities.Employees;
 using Scedulo.Server.Data.Entities.Rooms;
 using Scedulo.Server.Data.Entities.Schedules;
@@ -18,7 +20,6 @@ namespace Scedulo.Server.Data
         public ApplicationDbContext(DbContextOptions options) : base(options)
         {
         }
-
         public DbSet<Employee> Employees { get; set; }
         public DbSet<EmployeePermission> EmployeePermissions { get; set; }
         public DbSet<EmployeeRole> EmployeeRoles { get; set; }
@@ -29,6 +30,8 @@ namespace Scedulo.Server.Data
         public DbSet<ServiceReservation> ServiceReservations { get; set; }
         public DbSet<RoleServicePermssion> RoleServicePermission { get; set; }
         public DbSet<Service> Services { get; set; }
+        public DbSet<Customer> Customers { get; set; }
+        public DbSet<Address> Addresses { get; set; }
 
 
     }

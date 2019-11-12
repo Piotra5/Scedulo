@@ -17,5 +17,7 @@ namespace Scedulo.Server.Data.Entities.Base
         public string Country { get; set; }
         public string ZipCode { get; set; }
         public ApplicationUser User { get; set; }
+
+        public string UserId { get; set; }
     }
 }
