@@ -12,6 +12,6 @@ namespace Scedulo.Server.Data.Entities.Rooms
         public EmployeeRole ServiceRole { get; set; }
         public string ServiceRoleId { get; set; }
         public Room Room { get; set; }
-        public string ServiceId { get; set; }
+        public string RoomId { get; set; }
     }
 }

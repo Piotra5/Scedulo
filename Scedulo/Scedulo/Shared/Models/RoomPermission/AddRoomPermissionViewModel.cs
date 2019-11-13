@@ -5,11 +5,8 @@ using System.Text;
 
 namespace Scedulo.Shared.Models.RoomPermission
 {
-    public class RoomPermissionViewModel
+    public class AddRoomPermissionViewModel
     {
-        [Display(Name = "Id")]
-        public string Id { get; set; }
-
         [Display(Name = "Name")]
         public string ServiceRoleId { get; set; }
 
