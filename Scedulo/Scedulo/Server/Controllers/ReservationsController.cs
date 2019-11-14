@@ -47,7 +47,7 @@ namespace Scedulo.Server.Controllers
                 foreach (var modelState in ModelState.Values)
                 {
                     foreach (var modelError in modelState.Errors)
-                    {
+                    { 
                         modelErrors.Add(modelError.ErrorMessage);
                     }
                 }
@@ -62,15 +62,18 @@ namespace Scedulo.Server.Controllers
             //var currentUser = await _userManager.GetUserAsync(User.Identities.);
             string userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             var user = await _userManager.FindByIdAsync(userId);
-            var successful = await _reservationsService
+            var feedback = await _reservationsService
             .AddServiceReservationAsync(newReservation, userId);
 
-            if (successful == null)
+            if (feedback.Successful == false)
             {
-                return BadRequest("Could not add service.");
+                return BadRequest("Could not add service because: " + feedback.Message);
             }
-
-            return Ok("Added service: " + newReservation.CustomerId.ToUpper());
+            else
+            {
+                return Ok(feedback.Message);
+            }
+            return BadRequest("Could not add service because: " + feedback.Message);
         }
     }
 }
