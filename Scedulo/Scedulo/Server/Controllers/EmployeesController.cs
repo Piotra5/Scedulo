@@ -11,6 +11,8 @@ using Scedulo.Server.Data.Entities.ApplicationUsers;
 using Scedulo.Shared.Models.Employees;
 using Scedulo.Server.Data.Entities.Employees;
 using Scedulo.Shared.Models.Base;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Http;
 
 namespace CalendaroNet.Controllers
 {
@@ -22,11 +24,12 @@ namespace CalendaroNet.Controllers
 
         private readonly IEmployeesService _employeeService;
         private readonly UserManager<ApplicationUser>  _userManager;
+        private readonly string userId;
 
-        public EmployeesController(IEmployeesService EmployeeService, UserManager<ApplicationUser> userManager)
+        public EmployeesController(IEmployeesService EmployeeService, IHttpContextAccessor httpContextAccessor)
         {
             _employeeService = EmployeeService;
-            _userManager = userManager;
+            userId = httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
         }
 
         // GET api/employees
@@ -61,9 +64,8 @@ namespace CalendaroNet.Controllers
                 }
                 return BadRequest(new AddingResult { Successful = false, Errors = modelErrors });
             }
-            var currentUser = await _userManager.GetUserAsync(User);
-            var employedUser = await _userManager.FindByIdAsync(newEmployee.UserId);
-            if (currentUser == null) return Challenge();
+            var employedUser = await _userManager.FindByIdAsync(userId);
+            //if (currentUser == null) return Challenge();
             var employee = new Employee
             {
                 Id = Guid.NewGuid(),
@@ -71,7 +73,7 @@ namespace CalendaroNet.Controllers
                 EmploymentDate = newEmployee.EmploymentDate,
                 ContractEndDate = newEmployee.ContractEndDate,
                 CreatedDate = DateTimeOffset.Now,
-                AddedBy = currentUser,
+                AddedById = userId,
                 BaseMonthSalary = newEmployee.BaseMonthSalary,
             };
 

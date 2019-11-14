@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Scedulo.Server.Services.RoomPermissions
 {
-    public interface IReservationsService
+    public interface IRoomPermissionsService
     {
         Task<RoleRoomPermission> GetPermissionByIdAsync(string id);
         Task<IEnumerable<RoleRoomPermission>> GetListOfAllPermissionsAsync();

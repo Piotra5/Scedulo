@@ -24,10 +24,10 @@ namespace Scedulo.Server.Services.Reservations
             _context = context;
         }
         #endregion
-        #region ReservationsService()
+        #region AddReservationsService()
         public async Task<string> AddServiceReservationAsync(AddReservationViewModel addReservation, string userId)
         {
-            if (CanEmployeeDo(addReservation.EmployeeId, addReservation.ServiceId) != null)
+            if (await CanEmployeeDo(addReservation.EmployeeId, addReservation.ServiceId) != null)
             {
                 var guidServiceId = new Guid(addReservation.ServiceId);
                 var service = await _context.Services
@@ -57,7 +57,7 @@ namespace Scedulo.Server.Services.Reservations
                         Done = false,
                         AbsenceReason = ""
                     };
-                    _context.ServiceReservations.Add(reservation);
+                    await _context.ServiceReservations.AddAsync(reservation);
                     var saveResult = await _context.SaveChangesAsync();
                     if (saveResult == 1)
                         return reservation.Id.ToString();
@@ -76,12 +76,20 @@ namespace Scedulo.Server.Services.Reservations
             var allEmployeeRoles = await _context.EmployeePermissions
                 .Where(x => x.EmployeeId == employeeId)
                 .ToListAsync();
-            
-            var allServicesRoles = await _context.RoleServicePermission
-                .Where(x => allEmployeeRoles.Any(y => y.RoleId == x.ServiceRoleId))
-                .ToListAsync();
+            List<RoleServicePermssion> roleServicePermssionsList = new List<RoleServicePermssion>();
 
-            foreach(var sRole in allServicesRoles)
+            foreach (var erole in allEmployeeRoles)
+            {
+                var servicePerm = await _context.RoleServicePermission
+                    .Where(x => x.ServiceRoleId == erole.RoleId)
+                    .ToListAsync();
+                foreach(var sp in servicePerm)
+                {
+                    roleServicePermssionsList.Add(sp);
+                }
+            }
+
+            foreach(var sRole in roleServicePermssionsList)
             {
                 foreach(var eRole in allEmployeeRoles)
                 {
@@ -99,7 +107,7 @@ namespace Scedulo.Server.Services.Reservations
                 && x.StartTime > reservationSchedule.StartDate && x.StartTime < reservationSchedule.EndTime
                 && x.EndTime > reservationSchedule.StartDate && x.EndTime < reservationSchedule.EndTime)
                 .FirstOrDefaultAsync();
-            if(servicesRole.Id.ToString() == "" || servicesRole.Id == null)
+            if(servicesRole == null)
                 if (await IsEmployeerFree(reservationSchedule))
                     return true;
             return false;
@@ -113,7 +121,7 @@ namespace Scedulo.Server.Services.Reservations
                 && x.StartTime > reservationSchedule.StartDate && x.StartTime < reservationSchedule.EndTime
                 && x.EndTime > reservationSchedule.StartDate && x.EndTime < reservationSchedule.EndTime)
                 .FirstOrDefaultAsync();
-            if (servicesRole.Id.ToString() == "" || servicesRole.Id == null)
+            if (servicesRole == null)
                 return true;
             return false;
 
@@ -144,9 +152,29 @@ namespace Scedulo.Server.Services.Reservations
         }
         #endregion
         #region GetListOfAllReservationsAsync()
-        public Task<IEnumerable<ReservationViewModel>> GetListOfAllReservationsAsync(string userId)
+        public async Task<IEnumerable<ReservationViewModel>> GetListOfAllReservationsAsync()
         {
-            throw new NotImplementedException();
+            var reservations = await _context.ServiceReservations
+                .ToListAsync();
+            var list = new List<ReservationViewModel>();
+            foreach (var reservation in reservations)
+            {
+                var reservationModel = new ReservationViewModel
+                {
+                    ID = reservation.Id.ToString(),
+                    CustomerId = reservation.CustomerId,
+                    ServiceId = reservation.ServiceId,
+                    EmployeeId = reservation.EmployeeId,
+                    ReservationTime = reservation.ReservationTime,
+                    StartTime = reservation.StartTime,
+                    EndTime = reservation.EndTime,
+                    ServiceTimeInMinutes = reservation.ServiceTimeInMinutes,
+                    Done = reservation.Done,
+                    AbsenceReason = reservation.AbsenceReason
+                };
+                list.Add(reservationModel);
+            }
+            return list;
         }
         #endregion
         #region GetReservationsForEmployee()

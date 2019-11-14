@@ -23,6 +23,8 @@ using Scedulo.Server.Services.ServicePermissions;
 using Scedulo.Server.Services.Rooms;
 using Scedulo.Server.Services.RoomPermissions;
 using Scedulo.Server.Services.Schedules;
+using Scedulo.Server.Services.Reservations;
+using Microsoft.AspNetCore.Http;
 
 namespace Scedulo.Server
 {
@@ -93,6 +95,7 @@ namespace Scedulo.Server
                 }
                 });
             });
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             services.AddScoped<IEmployeesService, EmployeesService>();
             services.AddScoped<IServicesService, ServicesService>();
@@ -100,8 +103,9 @@ namespace Scedulo.Server
             services.AddScoped<IEmployeePermissionService, EmployeePermissionService>();
             services.AddScoped<IServicesPermissionService, ServicesPermissionService>();
             services.AddScoped<IRoomsService, RoomsService>();
-            services.AddScoped<IReservationsService, RoomPermissionsService>();
+            services.AddScoped<IRoomPermissionsService, RoomPermissionsService>();
             services.AddScoped<ISchedulesService, SchedulesService>();
+            services.AddScoped<IReservationsService, ReservationsService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

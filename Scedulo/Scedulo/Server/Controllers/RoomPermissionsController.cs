@@ -16,9 +16,9 @@ namespace Scedulo.Server.Controllers
     public class RoomPermissionsController : Controller
     {
 
-        private readonly IReservationsService _roomPermissionsService;
+        private readonly IRoomPermissionsService _roomPermissionsService;
 
-        public RoomPermissionsController(IReservationsService RoomPermissionsService)
+        public RoomPermissionsController(IRoomPermissionsService RoomPermissionsService)
         {
             _roomPermissionsService = RoomPermissionsService;
         }

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Scedulo.Server.Services.RoomPermissions
 {
-    public class RoomPermissionsService : IReservationsService
+    public class RoomPermissionsService : IRoomPermissionsService
     {
         private readonly ApplicationDbContext _context;
 

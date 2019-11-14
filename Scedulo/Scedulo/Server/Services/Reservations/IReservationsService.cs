@@ -10,7 +10,7 @@ namespace Scedulo.Server.Services.Reservations
 {
     public interface IReservationsService
     {
-        Task<IEnumerable<ReservationViewModel>> GetListOfAllReservationsAsync(string userId);
+        Task<IEnumerable<ReservationViewModel>> GetListOfAllReservationsAsync();
         Task<List<ReservationViewModel>> GetReservationsForUser(string userId);
         Task<List<ReservationViewModel>> GetReservationsForEmployee(string employeeId);
         Task<string> AddServiceReservationAsync(AddReservationViewModel reservation, string id);
