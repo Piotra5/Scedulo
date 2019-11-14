@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace Scedulo.Shared.Models.RoomPermission
+namespace Scedulo.Shared.Models.RoomPermissions
 {
     public class AddRoomPermissionViewModel
     {

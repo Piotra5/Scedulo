@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace Scedulo.Shared.Models.ServicePermission
+namespace Scedulo.Shared.Models.ServicePermissions
 {
     public class AddServicePermissionViewModel
     {

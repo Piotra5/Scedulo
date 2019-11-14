@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Scedulo.Server.Services.ServicePermissions;
 using Scedulo.Shared.Models.Base;
-using Scedulo.Shared.Models.ServicePermission;
+using Scedulo.Shared.Models.ServicePermissions;
 
 namespace Scedulo.Server.Controllers
 {
@@ -95,7 +95,5 @@ namespace Scedulo.Server.Controllers
 
             return Ok("Deleted serivce permission " + id);
         }
-
-
     }
 }

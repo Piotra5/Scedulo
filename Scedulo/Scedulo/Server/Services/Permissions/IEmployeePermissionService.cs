@@ -1,5 +1,5 @@
 ﻿using Scedulo.Server.Data.Entities.Employees;
-using Scedulo.Shared.Models.EmployeePermission;
+using Scedulo.Shared.Models.EmployeePermissions;
 using System;
 using System.Collections.Generic;
 using System.Linq;

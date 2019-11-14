@@ -19,8 +19,10 @@ namespace Scedulo.Server.Data.Entities.ServiceReservations
         public string ServiceId { get; set; }
         public Employee Employee { get; set; }
         public string EmployeeId { get; set; }
-        public DateTimeOffset ReservationTime { get; set; }
-        public DateTimeOffset EstimatedTime { get; set; }
+        public DateTime ReservationTime { get; set; }
+        public DateTime StartTime { get; set; }
+        public DateTime EndTime { get; set; }
+        public int ServiceTimeInMinutes { get; set; }
         public bool? Done { get; set; }
         [Column(TypeName = "text")]
         public String AbsenceReason { get; set; }

@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Scedulo.Server.Data;
 using Scedulo.Server.Data.Entities.Services;
-using Scedulo.Shared.Models.ServicePermission;
+using Scedulo.Shared.Models.ServicePermissions;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;

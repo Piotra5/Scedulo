@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace Scedulo.Shared.Models.RoomPermission
+namespace Scedulo.Shared.Models.ServicePermissions
 {
-    public class RoomPermissionViewModel
+    public class ServicePermissionViewModel
     {
         [Display(Name = "Id")]
         public string Id { get; set; }
@@ -14,6 +14,6 @@ namespace Scedulo.Shared.Models.RoomPermission
         public string ServiceRoleId { get; set; }
 
         [Display(Name = "Description")]
-        public string RoomId { get; set; }
+        public string ServiceId { get; set; }
     }
 }

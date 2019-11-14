@@ -1,5 +1,5 @@
 ﻿using Scedulo.Server.Data.Entities.Rooms;
-using Scedulo.Shared.Models.RoomPermission;
+using Scedulo.Shared.Models.RoomPermissions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Scedulo.Server.Services.RoomPermissions
 {
-    public interface IRoomPermissionsService
+    public interface IReservationsService
     {
         Task<RoleRoomPermission> GetPermissionByIdAsync(string id);
         Task<IEnumerable<RoleRoomPermission>> GetListOfAllPermissionsAsync();

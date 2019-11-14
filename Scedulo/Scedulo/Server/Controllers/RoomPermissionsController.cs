@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Scedulo.Server.Services.RoomPermissions;
 using Scedulo.Shared.Models.Base;
-using Scedulo.Shared.Models.RoomPermission;
+using Scedulo.Shared.Models.RoomPermissions;
 
 namespace Scedulo.Server.Controllers
 {
@@ -16,9 +16,9 @@ namespace Scedulo.Server.Controllers
     public class RoomPermissionsController : Controller
     {
 
-        private readonly IRoomPermissionsService _roomPermissionsService;
+        private readonly IReservationsService _roomPermissionsService;
 
-        public RoomPermissionsController(IRoomPermissionsService RoomPermissionsService)
+        public RoomPermissionsController(IReservationsService RoomPermissionsService)
         {
             _roomPermissionsService = RoomPermissionsService;
         }

@@ -9,7 +9,7 @@ using Scedulo.Server.Services.Employees;
 using Scedulo.Server.Services.Permissions;
 using Scedulo.Server.Services.Roles;
 using Scedulo.Shared.Models.Base;
-using Scedulo.Shared.Models.EmployeePermission;
+using Scedulo.Shared.Models.EmployeePermissions;
 using Scedulo.Shared.Models.EmployeeRoles;
 
 namespace Scedulo.Server.Controllers

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Scedulo.Shared.Models.EmployeePermission
+namespace Scedulo.Shared.Models.EmployeePermissions
 {
     public class EmployeePermissionsListModel
     {

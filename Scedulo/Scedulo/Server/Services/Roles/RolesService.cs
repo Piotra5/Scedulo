@@ -2,8 +2,8 @@
 using Scedulo.Server.Data;
 using Scedulo.Server.Data.Entities.Employees;
 using Scedulo.Shared.Models.EmployeeRoles;
-using Scedulo.Shared.Models.RoomPermission;
-using Scedulo.Shared.Models.ServicePermission;
+using Scedulo.Shared.Models.RoomPermissions;
+using Scedulo.Shared.Models.ServicePermissions;
 using System;
 using System.Collections.Generic;
 using System.Linq;

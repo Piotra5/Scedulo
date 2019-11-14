@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Scedulo.Server.Data;
 using Scedulo.Server.Data.Entities.Rooms;
-using Scedulo.Shared.Models.RoomPermission;
+using Scedulo.Shared.Models.RoomPermissions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Scedulo.Server.Services.RoomPermissions
 {
-    public class RoomPermissionsService : IRoomPermissionsService
+    public class RoomPermissionsService : IReservationsService
     {
         private readonly ApplicationDbContext _context;
 

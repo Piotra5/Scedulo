@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Scedulo.Server.Data;
 
 namespace Scedulo.Server.Data.Migations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20191113170907_SmallChangesWithNewVars")]
+    partial class SmallChangesWithNewVars
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -532,23 +534,17 @@ namespace Scedulo.Server.Data.Migations
                     b.Property<Guid?>("EmployeeId1")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime>("EndTime")
-                        .HasColumnType("datetime2");
+                    b.Property<DateTimeOffset>("EstimatedTime")
+                        .HasColumnType("datetimeoffset");
 
-                    b.Property<DateTime>("ReservationTime")
-                        .HasColumnType("datetime2");
+                    b.Property<DateTimeOffset>("ReservationTime")
+                        .HasColumnType("datetimeoffset");
 
                     b.Property<string>("ServiceId")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid?>("ServiceId1")
                         .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("ServiceTimeInMinutes")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("StartTime")
-                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
