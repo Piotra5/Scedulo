@@ -1,0 +1,49 @@
+﻿@page "/employees"
+@using Scedulo.Shared.Models.Employees
+@inject HttpClient Http
+
+<h1>Employees</h1>
+
+
+@if (employees == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Id</th>
+                <th>UserId</th>
+                <th>Role</th>
+                <th>Salary</th>
+                <th>Contract END</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var employee in employees)
+            {
+            <tr>
+                <td>@employee.Id.ToString()</td>
+                <td>@employee.Id.ToString()</td>
+                <td>@employee.BaseMonthSalary</td>
+                <td>@employee.FirstName</td>
+                <td>@employee.SecondName</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+}
+
+
+@code {
+    private EmployeeViewModel[] employees;
+
+    protected override async Task OnInitializedAsync()
+    {
+        employees = await Http.GetJsonAsync<EmployeeViewModel[]>("Employees");
+    }
+
+}

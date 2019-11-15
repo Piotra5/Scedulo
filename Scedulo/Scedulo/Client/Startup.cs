@@ -14,7 +14,6 @@ namespace Scedulo.Client
             services.AddAuthorizationCore();
             services.AddScoped<AuthenticationStateProvider, ApiAuthenticationStateProvider>();
             services.AddScoped<IAuthService, AuthService>();
-
         }
 
         public void Configure(IComponentsApplicationBuilder app)

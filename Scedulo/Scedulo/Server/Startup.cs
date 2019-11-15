@@ -120,7 +120,7 @@ namespace Scedulo.Server
             }
 
             app.UseStaticFiles();
-            //app.UseClientSideBlazorFiles<Client.Startup>();
+            app.UseClientSideBlazorFiles<Client.Startup>();
 
             // Enabled middleware to serve generated Swagger as a JSON endpoint.
             app.UseSwagger();

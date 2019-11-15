@@ -53,13 +53,7 @@ namespace Scedulo.Server.Controllers
                 }
                 return BadRequest(new AddingResult { Successful = false, Errors = modelErrors });
             }
-            
-            //var userId = UserId;
-            //ClaimsPrincipal currentUser = this.User;
-            //var currentUserName = currentUser.FindFirst(ClaimTypes.NameIdentifier).Value;
-            //ApplicationUser user = await _userManager.FindByNameAsync(currentUserName);
-            //var u= _userManager.
-            //var currentUser = await _userManager.GetUserAsync(User.Identities.);
+           
             string userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             var user = await _userManager.FindByIdAsync(userId);
             var feedback = await _reservationsService
