@@ -18,10 +18,7 @@ using Scedulo.Server.Data.Entities.ApplicationUsers;
 using Scedulo.Server.Services.Employees;
 using Scedulo.Server.Services.Services;
 using Scedulo.Server.Services.Roles;
-using Scedulo.Server.Services.Permissions;
-using Scedulo.Server.Services.ServicePermissions;
 using Scedulo.Server.Services.Rooms;
-using Scedulo.Server.Services.RoomPermissions;
 using Scedulo.Server.Services.Schedules;
 using Scedulo.Server.Services.Reservations;
 using Microsoft.AspNetCore.Http;
@@ -100,10 +97,7 @@ namespace Scedulo.Server
             services.AddScoped<IEmployeesService, EmployeesService>();
             services.AddScoped<IServicesService, ServicesService>();
             services.AddScoped<IRolesService, RolesService>();
-            services.AddScoped<IEmployeePermissionService, EmployeePermissionService>();
-            services.AddScoped<IServicesPermissionService, ServicesPermissionService>();
             services.AddScoped<IRoomsService, RoomsService>();
-            services.AddScoped<IRoomPermissionsService, RoomPermissionsService>();
             services.AddScoped<ISchedulesService, SchedulesService>();
             services.AddScoped<IReservationsService, ReservationsService>();
         }

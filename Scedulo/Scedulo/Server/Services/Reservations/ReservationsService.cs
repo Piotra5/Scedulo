@@ -3,7 +3,6 @@ using Scedulo.Server.Data;
 using Scedulo.Server.Data.Entities.Rooms;
 using Scedulo.Server.Data.Entities.ServiceReservations;
 using Scedulo.Server.Data.Entities.Services;
-using Scedulo.Server.Services.RoomPermissions;
 using Scedulo.Shared.Models.Base;
 using Scedulo.Shared.Models.Reservation;
 using Scedulo.Shared.Models.Reservations;
@@ -29,7 +28,7 @@ namespace Scedulo.Server.Services.Reservations
         public async Task<PassInfoModel> AddServiceReservationAsync(AddReservationViewModel addReservation, string userId)
         {
             var passedInfo = await CanEmployeeDo(addReservation.EmployeeId, addReservation.ServiceId);
-            if ( passedInfo.Successful == true)
+            if (passedInfo.Successful == true)
             {
                 var guidServiceId = new Guid(addReservation.ServiceId);
                 var service = await _context.Services
@@ -62,7 +61,7 @@ namespace Scedulo.Server.Services.Reservations
                         Done = false,
                         AbsenceReason = ""
                     };
-                    if( (reservation.ServiceTimeInMinutes > (reservation.StartTime - reservation.EndTime).TotalMinutes + 5) )
+                    if ((reservation.ServiceTimeInMinutes > (reservation.StartTime - reservation.EndTime).TotalMinutes + 5))
                     {
                         passedInfo.Successful = false;
                         passedInfo.Message = "Service time is longer than your reservation. ";
@@ -72,7 +71,7 @@ namespace Scedulo.Server.Services.Reservations
                     var saveResult = await _context.SaveChangesAsync();
                     if (saveResult == 1)
                     {
-                        passedInfo.Message = "Added reservation to database ID: " + reservation.Id + 
+                        passedInfo.Message = "Added reservation to database ID: " + reservation.Id +
                             "\n By employeeID: " + reservation.EmployeeId + " \n Service ID: " + reservation.ServiceId +
                             "\n For " + reservation.StartTime.ToString("dd-mm-yyyy HH:MM") + " - " + reservation.EndTime.ToString("dd-mm-yyyy HH:MM");
                         passedInfo.Successful = true;
@@ -83,7 +82,7 @@ namespace Scedulo.Server.Services.Reservations
                         passedInfo.Message = "Could not safe to database";
                         passedInfo.Successful = false;
                         return passedInfo;
-                    }                   
+                    }
                 }
                 passedInfo.Successful = false;
                 passedInfo.Message = "Service take longer than your reservation";
@@ -95,39 +94,41 @@ namespace Scedulo.Server.Services.Reservations
 
         public async Task<PassInfoModel> CanEmployeeDo(string employeeId, string serviceId)
         {
+
+            return new PassInfoModel { Message = "Employee can do", Successful = true };
             //var guidEmployeeID = new Guid(employeeId);
             //var guidServiceId = new Guid(serviceId);
-            var allEmployeeRoles = await _context.EmployeePermissions
-                .Where(x => x.EmployeeId == employeeId)
-                .ToListAsync();
-            List<RoleServicePermssion> roleServicePermssionsList = new List<RoleServicePermssion>();
+            //var allEmployeeRoles = await _context.EmployeePermissions
+            //    .Where(x => x.EmployeeId == employeeId)
+            //    .ToListAsync();
+            //List<RoleServicePermssion> roleServicePermssionsList = new List<RoleServicePermssion>();
 
-            foreach (var erole in allEmployeeRoles)
-            {
-                var servicePerm = await _context.RoleServicePermission
-                    .Where(x => x.ServiceRoleId == erole.RoleId)
-                    .ToListAsync();
-                foreach(var sp in servicePerm)
-                {
-                    roleServicePermssionsList.Add(sp);
-                }
-            }
-            foreach(var sRole in roleServicePermssionsList)
-            {
-                if(sRole.ServiceId == serviceId)
-                    return new PassInfoModel { Message = "Employee can do", Successful = true };
-            }
-            return new PassInfoModel { Message = "Employee is not permitted to do this service", Successful = false };
+            //foreach (var erole in allEmployeeRoles)
+            //{
+            //    var servicePerm = await _context.RoleServicePermission
+            //        .Where(x => x.ServiceRoleId == erole.RoleId)
+            //        .ToListAsync();
+            //    foreach (var sp in servicePerm)
+            //    {
+            //        roleServicePermssionsList.Add(sp);
+            //    }
+            //}
+            //foreach (var sRole in roleServicePermssionsList)
+            //{
+            //    if (sRole.ServiceId == serviceId)
+            //        return new PassInfoModel { Message = "Employee can do", Successful = true };
+            //}
+            //return new PassInfoModel { Message = "Employee is not permitted to do this service", Successful = false };
         }
         #region IsEmployeeScheduledd()
         public async Task<PassInfoModel> CanReservationBeScheduled(ReservationSechdule reservationSchedule)
         {
             var employeeScheduled = await _context.EmployeeSchedules
-                .Where(x => x.EmployeeId == reservationSchedule.EmployeeId 
+                .Where(x => x.EmployeeId == reservationSchedule.EmployeeId
                 && x.StartTime <= reservationSchedule.StartDate && x.StartTime < reservationSchedule.EndTime
                 && x.EndTime > reservationSchedule.StartDate && x.EndTime >= reservationSchedule.EndTime)
                 .FirstOrDefaultAsync();
-            if(employeeScheduled != null)
+            if (employeeScheduled != null)
                 if (await IsEmployeerFree(reservationSchedule))
                     return new PassInfoModel { Message = "Added", Successful = true };
                 else return new PassInfoModel { Message = "Employee has other services booked", Successful = false };
@@ -139,8 +140,8 @@ namespace Scedulo.Server.Services.Reservations
         {
             var employeeReservations = await _context.ServiceReservations
                 .Where(x => x.EmployeeId == reservationSchedule.EmployeeId
-                &&(( x.StartTime >= reservationSchedule.StartDate && x.StartTime < reservationSchedule.EndTime) ||
-                ( x.EndTime > reservationSchedule.StartDate && x.EndTime <= reservationSchedule.EndTime)))
+                && ((x.StartTime >= reservationSchedule.StartDate && x.StartTime < reservationSchedule.EndTime) ||
+                (x.EndTime > reservationSchedule.StartDate && x.EndTime <= reservationSchedule.EndTime)))
                 .FirstOrDefaultAsync();
             if (employeeReservations == null)
                 return true;
