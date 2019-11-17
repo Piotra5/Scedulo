@@ -21,6 +21,6 @@ namespace Scedulo.Server.Data.Entities.Employees
         public double BaseMonthSalary { get; set; }
 
 
-        public List<EmployeePermission> AvailablePermissions { get; set; } = new List<EmployeePermission>();
+        public virtual ICollection<EmployeeRole> AvailableRoles { get; set; };
     }
 }

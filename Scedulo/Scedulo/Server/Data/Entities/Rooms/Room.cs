@@ -13,6 +13,6 @@ namespace Scedulo.Server.Data.Entities.Rooms
         public string Name { get; set; }
         [Column(TypeName = "text")]
         public string Description { get; set; }
-        public List<RoomEquipment> AvailableEquipments { get; set; } = new List<RoomEquipment>();
+        public ICollection<RoomEquipment> AvailableEquipments { get; set; }
     }
 }

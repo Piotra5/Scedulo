@@ -21,14 +21,11 @@ namespace Scedulo.Server.Data
         {
         }
         public DbSet<Employee> Employees { get; set; }
-        public DbSet<EmployeePermission> EmployeePermissions { get; set; }
         public DbSet<EmployeeRole> EmployeeRoles { get; set; }
         public DbSet<Equipment> Equipments { get; set; }
-        public DbSet<RoleRoomPermission> RoleRoomPermissions { get; set; }
         public DbSet<Room> Rooms { get; set; }
         public DbSet<EmployeeSchedule> EmployeeSchedules { get; set; }
         public DbSet<ServiceReservation> ServiceReservations { get; set; }
-        public DbSet<RoleServicePermssion> RoleServicePermission { get; set; }
         public DbSet<Service> Services { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Address> Addresses { get; set; }
