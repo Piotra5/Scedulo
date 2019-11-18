@@ -8,7 +8,7 @@ namespace Scedulo.Shared.Models.ServicePermissions
     public class AddServicePermissionViewModel
     {
         [Display(Name = "Employee")]
-        public string ServiceRoleId { get; set; }
+        public string RolePermissionId { get; set; }
 
         [Display(Name = "Service")]
         public string ServiceId { get; set; }

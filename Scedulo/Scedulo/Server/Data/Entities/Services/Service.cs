@@ -1,3 +1,5 @@
+using Scedulo.Server.Data.Entities.Employees;
+using Scedulo.Server.Data.Entities.ServiceReservations;
 using Scedulo.Server.Services.Roles;
 using System;
 using System.Collections;
@@ -15,7 +17,8 @@ namespace Scedulo.Server.Data.Entities.Services
         public bool RoleReqired {get; set;}
         public double PriceInPln {get; set;}
 
-        public ICollection<RolesService> Roles { get; set; }
+        public ICollection<PermissionToService> PermissionToService { get; set; }
+        public ICollection<ServiceReservation> Reservations { get; set; }
 
     }
 }

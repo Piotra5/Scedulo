@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Scedulo.Server.Data;
 
 namespace Scedulo.Server.Data.Migations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20191118130724_AddedEntitiesToDBContextU")]
+    partial class AddedEntitiesToDBContextU
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -390,7 +392,7 @@ namespace Scedulo.Server.Data.Migations
 
                     b.HasIndex("EmployeeRoleId");
 
-                    b.ToTable("RolePermissions");
+                    b.ToTable("RolePermission");
                 });
 
             modelBuilder.Entity("Scedulo.Server.Data.Entities.Rooms.Equipment", b =>
@@ -447,7 +449,7 @@ namespace Scedulo.Server.Data.Migations
 
                     b.HasIndex("RoomId1");
 
-                    b.ToTable("RoomPermissions");
+                    b.ToTable("RoomPermission");
                 });
 
             modelBuilder.Entity("Scedulo.Server.Data.Entities.Rooms.Room", b =>
@@ -591,7 +593,7 @@ namespace Scedulo.Server.Data.Migations
 
                     b.HasIndex("ServiceId1");
 
-                    b.ToTable("ServicePermissions");
+                    b.ToTable("ServicePermission");
                 });
 
             modelBuilder.Entity("Scedulo.Server.Data.Entities.Services.Service", b =>

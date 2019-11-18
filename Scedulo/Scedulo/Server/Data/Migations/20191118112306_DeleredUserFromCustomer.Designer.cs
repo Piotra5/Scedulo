@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Scedulo.Server.Data;
 
 namespace Scedulo.Server.Data.Migations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20191118112306_DeleredUserFromCustomer")]
+    partial class DeleredUserFromCustomer
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -286,11 +288,9 @@ namespace Scedulo.Server.Data.Migations
                         .HasColumnType("bit");
 
                     b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Customers");
                 });
@@ -381,16 +381,13 @@ namespace Scedulo.Server.Data.Migations
                     b.Property<string>("EmplyoeeRoleId")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("ExpiringTime")
-                        .HasColumnType("datetime2");
-
                     b.HasKey("Id");
 
                     b.HasIndex("EmployeeId1");
 
                     b.HasIndex("EmployeeRoleId");
 
-                    b.ToTable("RolePermissions");
+                    b.ToTable("RolePermission");
                 });
 
             modelBuilder.Entity("Scedulo.Server.Data.Entities.Rooms.Equipment", b =>
@@ -447,7 +444,7 @@ namespace Scedulo.Server.Data.Migations
 
                     b.HasIndex("RoomId1");
 
-                    b.ToTable("RoomPermissions");
+                    b.ToTable("PermissionToRoom");
                 });
 
             modelBuilder.Entity("Scedulo.Server.Data.Entities.Rooms.Room", b =>
@@ -591,7 +588,7 @@ namespace Scedulo.Server.Data.Migations
 
                     b.HasIndex("ServiceId1");
 
-                    b.ToTable("ServicePermissions");
+                    b.ToTable("PermissionToService");
                 });
 
             modelBuilder.Entity("Scedulo.Server.Data.Entities.Services.Service", b =>
@@ -676,13 +673,6 @@ namespace Scedulo.Server.Data.Migations
                     b.HasOne("Scedulo.Server.Data.Entities.ApplicationUsers.ApplicationUser", "User")
                         .WithOne("Address")
                         .HasForeignKey("Scedulo.Server.Data.Entities.Base.Address", "UserId");
-                });
-
-            modelBuilder.Entity("Scedulo.Server.Data.Entities.Customers.Customer", b =>
-                {
-                    b.HasOne("Scedulo.Server.Data.Entities.ApplicationUsers.ApplicationUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("Scedulo.Server.Data.Entities.Employees.Employee", b =>

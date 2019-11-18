@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Scedulo.Shared.Models.EmployeePermissions
 {
-    public class AddEmployeePermissionModel
+    public class RolePermissionModel
     {
         public string EmployeeId { get; set; }
         public string RoleId { get; set; }

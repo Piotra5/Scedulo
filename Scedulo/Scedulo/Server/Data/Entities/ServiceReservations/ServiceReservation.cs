@@ -7,6 +7,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
+using Scedulo.Server.Data.Entities.Rooms;
 
 namespace Scedulo.Server.Data.Entities.ServiceReservations
 {
@@ -19,6 +20,8 @@ namespace Scedulo.Server.Data.Entities.ServiceReservations
         public string ServiceId { get; set; }
         public Employee Employee { get; set; }
         public string EmployeeId { get; set; }
+        public Room Room { get; set; }
+        public string RoomId { get; set; }
         public DateTime ReservationTime { get; set; }
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }

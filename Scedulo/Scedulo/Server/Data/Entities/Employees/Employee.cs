@@ -1,4 +1,6 @@
 using Scedulo.Server.Data.Entities.ApplicationUsers;
+using Scedulo.Server.Data.Entities.Schedules;
+using Scedulo.Server.Data.Entities.ServiceReservations;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -20,7 +22,8 @@ namespace Scedulo.Server.Data.Entities.Employees
         public string EditedById { get; set; }
         public double BaseMonthSalary { get; set; }
 
-
-       public virtual ICollection<EmployeeRole> AvailableRoles { get; set; }
+        public virtual ICollection<EmployeeRole> RolePermissions { get; set; }
+        public virtual ICollection<EmployeeSchedule> EmployeeSchedules { get; set; }
+        public virtual ICollection<ServiceReservation> ServiceReservations { get; set; }
     }
 }

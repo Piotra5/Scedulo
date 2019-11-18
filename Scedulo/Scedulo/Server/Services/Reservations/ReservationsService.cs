@@ -10,6 +10,7 @@ using Scedulo.Shared.Models.RoomPermissions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
 namespace Scedulo.Server.Services.Reservations
@@ -94,10 +95,17 @@ namespace Scedulo.Server.Services.Reservations
 
         public async Task<PassInfoModel> CanEmployeeDo(string employeeId, string serviceId)
         {
+            var guidEmployeeID = new Guid(employeeId);
+            var guidServiceId = new Guid(serviceId);
+            //var employeeRoleMatch = await _context.Employees
+            //    .Where(x => x.Id == guidEmployeeID
+            //    && x.AvailableRoles.Any(s => s.Id == guidServiceId))
+            //    .ToListAsync();
 
             return new PassInfoModel { Message = "Employee can do", Successful = true };
-            //var guidEmployeeID = new Guid(employeeId);
-            //var guidServiceId = new Guid(serviceId);
+
+
+
             //var allEmployeeRoles = await _context.EmployeePermissions
             //    .Where(x => x.EmployeeId == employeeId)
             //    .ToListAsync();

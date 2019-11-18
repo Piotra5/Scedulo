@@ -29,6 +29,9 @@ namespace Scedulo.Server.Data
         public DbSet<Service> Services { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Address> Addresses { get; set; }
+        public DbSet<RolePermission> RolePermissions { get; set; }
+        public DbSet<PermissionToService> ServicePermissions { get; set; }
+        public DbSet<PermissionToRoom> RoomPermissions { get; set; }
 
 
     }

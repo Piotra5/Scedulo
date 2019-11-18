@@ -14,9 +14,9 @@ namespace Scedulo.Server.Data.Entities.Employees
         [Column(TypeName = "text")]
         public string Description {get; set;}
 
-        public virtual ICollection<Employee> Employees { get; set; }
-        public virtual ICollection<Service> AvailableServices { get; set; }
-        public virtual ICollection<Room> AvailableRooms { get; set; }
+        public virtual ICollection<RolePermission> RolePermissions { get; set; }
+        public virtual ICollection<PermissionToService> PermissionsToService { get; set; }
+        public virtual ICollection<PermissionToRoom> PermissionToRoom { get; set; }
 
     }
 }

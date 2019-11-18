@@ -1,4 +1,5 @@
-﻿using Scedulo.Server.Services.Roles;
+﻿using Scedulo.Server.Data.Entities.Employees;
+using Scedulo.Server.Services.Roles;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -16,6 +17,6 @@ namespace Scedulo.Server.Data.Entities.Rooms
         public string Description { get; set; }
 
         public ICollection<Equipment> AvailableEquipments { get; set; }
-        public ICollection<RolesService> Roles { get; set; }
+        public ICollection<EmployeeRole> Roles { get; set; }
     }
 }

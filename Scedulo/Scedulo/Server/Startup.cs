@@ -22,6 +22,7 @@ using Scedulo.Server.Services.Rooms;
 using Scedulo.Server.Services.Schedules;
 using Scedulo.Server.Services.Reservations;
 using Microsoft.AspNetCore.Http;
+using Scedulo.Server.Services.Permissions;
 
 namespace Scedulo.Server
 {
@@ -100,6 +101,7 @@ namespace Scedulo.Server
             services.AddScoped<IRoomsService, RoomsService>();
             services.AddScoped<ISchedulesService, SchedulesService>();
             services.AddScoped<IReservationsService, ReservationsService>();
+            services.AddScoped<IRolePermissionService, RolePermissionService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -114,7 +116,7 @@ namespace Scedulo.Server
             }
 
             app.UseStaticFiles();
-            app.UseClientSideBlazorFiles<Client.Startup>();
+            //app.UseClientSideBlazorFiles<Client.Startup>();
 
             // Enabled middleware to serve generated Swagger as a JSON endpoint.
             app.UseSwagger();
